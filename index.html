@@ -12,34 +12,20 @@
     const root = document.getElementById("root");
 
     // = () => (~~) 는 function이랑 return 문을 포함
-    const Title = () => (
-      <h3
-        id="title"
-        onMouseEnter={() => console.log("mouse enter")}
-        onMouseLeave={() => console.log("mouse leave")}
-      >
-        Hello I'm a span
-      </h3>
-    );
+    function App() {
+      const [counter, setCounter] = React.useState(0);
 
-    const Button = () => (
-      <button
-        style={{
-          backgroundColor: "tomato",
-        }}
-        onClick={() => console.log("i'm clicked")}
-      >
-        Click me
-      </button>
-    );
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
 
-    // span과 btn 둘 다 render하고 싶을 때 array로..
-    const Container = () => (
-      <div>
-        <Title />
-        <Button />
-      </div>
-    );
-    ReactDOM.render(<Container />, root);
+      return (
+        <div>
+          <h3>Total Clicks : {counter}</h3>
+          <button onClick={onClick}> Click me</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
   </script>
 </html>
