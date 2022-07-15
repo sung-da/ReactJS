@@ -13,16 +13,48 @@
 
     // = () => (~~) 는 function이랑 return 문을 포함
     function App() {
-      const [counter, setCounter] = React.useState(0);
-
-      const onClick = () => {
-        setCounter(counter + 1);
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
+      const onChange = (event) => {
+        setAmount(event.target.value);
       };
-
+      const reset = () => setAmount(0);
+      // onFlip 함수는 현재 값을 받아서 그 반대의 값을 내놓는다.
+      // true -> false, false -> true
+      const onFlip = () => {
+        reset();
+        setFlipped((current) => !current);
+      };
       return (
         <div>
-          <h3>Total Clicks : {counter}</h3>
-          <button onClick={onClick}> Click me</button>
+          <div>
+            <h1>Super Converter</h1>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              value={flipped ? amount * 60 : amount}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+              disabled={flipped} // flipped가 true일 때 disabled
+            />
+          </div>
+
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              // 삼항연산자 조건 ? 조건이 참일 떄 : 조건이 거짓일 때
+              value={flipped ? amount : Math.round(amount / 60)}
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              onChange={onChange}
+              disabled={!flipped} // flipped가 false일 때 disabled
+            />
+          </div>
+
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>Flip</button>
         </div>
       );
     }
