@@ -1,0 +1,8 @@
+body {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: beige;
+}

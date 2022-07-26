@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <link rel="stylesheet" href="style.css" />
   <body>
     <div id="root"></div>
   </body>
@@ -110,7 +111,7 @@
         setIndex(event.target.value);
       };
       return (
-        <div>
+        <div id="wrapper">
           <h1>Super Converter</h1>
           <select value={index} onChange={onSelect}>
             <option value="default">Select your units</option>
@@ -118,7 +119,7 @@
             <option value="1">Km & Miles</option>
           </select>
           <hr />
-          {index === "default" ? "Please select your units" : null}
+          {index === "default" ? "Please select your units." : null}
           {index === "0" ? <MinutesToHours /> : null}
           {index === "1" ? <KmToMiles /> : null}
         </div>
